@@ -14,6 +14,8 @@
   
   <title>Frontend Mentor | Interactive card details form</title>
 
+  <script src="./main.js"></script>
+
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 
 </head>
@@ -33,10 +35,13 @@
       </div>
 
       <div class="card-front-down">
-        <p class="card-number">0000 0000 0000 0000</p>
+        <p class="card-number" id="cardNumberInCard">0000 0000 0000 0000</p>
         <div class="card-front-name">
-          <p class="card-name">Jane Appleseed</p>
-          <p class="card-expdate">00/00</p>
+          <p class="card-name" id="cardHolderNameInCard">Jane Appleseed</p>
+          <p class="card-expdate">
+            <span id="mmInCard">00</span>
+            <span>/</span>
+            <span id="yyInCard">00</span></p>
         </div>
       </div>
 
@@ -44,7 +49,7 @@
 
     <div class="card-back">
 
-      <p class="cvv-back">000</p>
+      <p class="cvv-back" id="cvvInCard">000</p>
 
     </div>
 
@@ -56,26 +61,33 @@
     <form class="inputForm" action="">
       
       <div class="field-div">
-        <label class="entry-label" for="cardholderName">CARDHOLDER NAME</label>
-        <input class="entry-input" id="cardholderName" type="text" value="e.g. Jane Appleseed">
+        <label class="entry-label" for="cardHolderName">CARDHOLDER NAME</label>
+        <input class="entry-input" id="cardHolderName" type="text" value="e.g. Jane Appleseed">
       </div>
 
       <div class="field-div">
         <label class="entry-label" for="cardNumber">CARD NUMBER</label>
-        <input class="entry-input" id="cardNumber" type="text" value="e.g. 1234 5678 91011 1213">
+        <input class="entry-input" id="cardNumber" type="text" value="e.g. 1234 5678 91011 1213" maxlength="19">
       </div>
+
+      <p class="err-msg-number" id="cardNumberErr">Wrong format. Numbers only.</p>
 
       <div class="field-div exp-date-cvc-map">
         <label class="entry-label exp-date-grid-area" for="exp-date">Exp. Date. (MM/YY)</label>
         
-        <label class="entry-label cvc-grid-area adjust-margin-cvc" for="cvc-number">CVC</label>
+        <label class="entry-label cvc-grid-area adjust-margin-cvc" for="cvc-number">CVV</label>
 
-        <input type="text" class="entry-input mm-input" value="MM">
+        <input type="text" class="entry-input mm-input" value="MM" id="mm" maxlength="2">
 
-        <input type="text" class="entry-input yy-input" value="YY">
+        <input type="text" class="entry-input yy-input" value="YY" id="yy" maxlength="2">
 
-        <input type="text" class="entry-input cvc-input adjust-margin-cvc" value="e.g. 123">
-       </div>
+        <input type="text" class="entry-input cvc-input adjust-margin-cvc" id="cvv" value="e.g. 123">
+       
+        <p class="err-msg-mm" id="mmErr">Invalid Month</p>
+        <p class="err-msg-yy" id="yyErr">Invalid Year</p>
+        <p class="err-msg-cvv adjust-margin-cvc" id="cvvErr">Can't be blank</p>
+      
+      </div>
 
        <input class="confirm-btn" type="submit" value="Confirm">
 

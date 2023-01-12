@@ -109,10 +109,35 @@ body {
     display: grid;
     grid-template-areas: 
                 "date-label date-label cvc-label"
-                "mm-input   yy-input   cvc-input";
-    grid-template-rows: auto auto;
+                "mm-input   yy-input   cvc-input"
+                "err-msg-mm err-msg-yy err-msg-cvv";
+    grid-template-rows: auto auto auto;
     grid-template-columns: 1fr 1fr 2fr;
 }
+
+.err-msg-number {
+    font-size: 9px;
+    color: white;
+}
+
+.err-msg-mm {
+    grid-area: err-msg-mm;
+    font-size: 9px;
+    color:white;
+}
+
+.err-msg-yy {
+    grid-area: err-msg-yy;
+    font-size: 9px;
+    color: white;
+}
+
+.err-msg-cvv {
+    grid-area: err-msg-cvv;
+    font-size: 9px;
+    color:white;
+}
+
 
 .exp-date-grid-area {
     grid-area: date-label;
