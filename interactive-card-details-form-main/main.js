@@ -30,11 +30,13 @@ function updateCard(e) {
     const inCardEl = findInCardEl(e.target.id, "InCard");
 
     // add spaces effect
-    cardNumberSpaces.forEach(spacePos => {
-        if (e.target.value.length === spacePos) {
-            e.target.value += " ";
-        }
-    })
+    if (e.target.id === "cardNumber") {
+        cardNumberSpaces.forEach(spacePos => {
+            if (e.target.value.length === spacePos) {
+                e.target.value += " ";
+            }
+        })
+    }
 
     inCardEl.textContent = e.target.value;
 }
@@ -73,7 +75,7 @@ function cardHolderName(el) {
 }
 
 function mm(el) {
-    month = el.target.value;
+    const month = el.target.value;
     if (month.length !== 2) return false;
     if (hasLetters(month)) return false;
     if (parseInt(month) < 1 || parseInt(month) > 12) return false;
@@ -81,12 +83,18 @@ function mm(el) {
 }
 
 function yy(el) {
-    year = el.target.value;
+    const year = el.target.value;
     if (year.length !== 2) return false;
     if (hasLetters(year)) return false;
     if (parseInt(year) < 22) return false;
     return true;
+}
 
+function cvv(el) {
+    const cvvNum = el.target.value;
+    if (cvvNum.length !== 3) return false;
+    if (hasLetters(cvvNum)) return false;
+    return true;
 }
 
 function cardNumber(el) {
@@ -96,6 +104,7 @@ function cardNumber(el) {
     if (hasLetters(cardNumberNoSpace)) return false;
     return true;
 }
+
 
 
 
