@@ -19,7 +19,9 @@
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 
 </head>
-<body class="container">
+<body>
+
+<div class="container">
 
   <div class="card-box">
 
@@ -62,12 +64,13 @@
       
       <div class="field-div">
         <label class="entry-label" for="cardHolderName">CARDHOLDER NAME</label>
-        <input class="entry-input" id="cardHolderName" type="text" value="e.g. Jane Appleseed">
+        <input class="entry-input fontClear" id="cardHolderName" type="text" value="e.g. Jane Appleseed">
       </div>
+      <p class="err-msg-number" id="cardHolderNameErr">Invalid name.</p>
 
       <div class="field-div">
         <label class="entry-label" for="cardNumber">CARD NUMBER</label>
-        <input class="entry-input" id="cardNumber" type="text" value="e.g. 1234 5678 91011 1213" maxlength="19">
+        <input class="entry-input fontClear" id="cardNumber" type="text" value="e.g. 1234 5678 91011 1213" maxlength="19">
       </div>
 
       <p class="err-msg-number" id="cardNumberErr">Wrong format. Numbers only.</p>
@@ -77,11 +80,11 @@
         
         <label class="entry-label cvc-grid-area adjust-margin-cvc" for="cvc-number">CVV</label>
 
-        <input type="text" class="entry-input mm-input" value="MM" id="mm" maxlength="2">
+        <input type="text" class="entry-input mm-input fontClear" value="MM" id="mm" maxlength="2">
 
-        <input type="text" class="entry-input yy-input" value="YY" id="yy" maxlength="2">
+        <input type="text" class="entry-input yy-input fontClear" value="YY" id="yy" maxlength="2">
 
-        <input type="text" class="entry-input cvc-input adjust-margin-cvc" id="cvv" value="e.g. 123">
+        <input type="text" class="entry-input cvc-input adjust-margin-cvc fontClear" id="cvv" value="e.g. 123">
        
         <p class="err-msg-mm" id="mmErr">Invalid Month</p>
         <p class="err-msg-yy" id="yyErr">Invalid Year</p>
@@ -89,14 +92,35 @@
       
       </div>
 
-       <input class="confirm-btn" type="submit" value="Confirm">
-
-
+      <button type="submit" class="btn" id="confirm-btn">Confirm</button>
     
     </form>
 
-  </div>
+    <!-- Thank you part -->
 
+    <div class="thankYou"> 
+
+      <svg width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="40" fill="url(#a)" />
+        <path d="M28 39.92 36.08 48l16-16" stroke="#fff" stroke-width="3" />
+        <defs>
+          <linearGradient id="a" x1="-23.014" y1="11.507" x2="0" y2="91.507" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6348FE" />
+            <stop offset="1" stop-color="#610595" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <p class="font26 fontDark mt40 cSpace1">THANK YOU!</p>
+
+      <p class="fontMedium font14 mt20">We've added your card details</p>
+
+      <button class="btn" type="submit" id="continue-btn">Continue</button>
+
+    </div>
+
+  </div>
+</div>
   
 <!--  0000 0000 0000 0000
   Jane Appleseed
@@ -124,12 +148,12 @@
   Thank you!
   We've added your card details
   Continue
-  
+-->  
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="https://github.com/abv4594">abv4594</a>.
   </div>
--->
+</div>
 
 </body>
 </html>

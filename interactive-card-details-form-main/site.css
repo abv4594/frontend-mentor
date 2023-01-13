@@ -3,6 +3,15 @@
     box-sizing: border-box;
 }
 
+/* to avoid Browser to messup with input fields formatting... */
+/* ... solution found Googling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: hsl(270, 3%, 87%);
+}
 
 .attribution {
     font-size: 11px;
@@ -14,15 +23,15 @@
 }
 
 body {
-    width: 1440px;
-    height: 900px;
     background-image: url("./images/bg-main-desktop.png");
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 18px;
 }
 
 .container {
+    width: 1440px;
+    height: 900px;
     display: flex;
     flex-direction: row;
 }
@@ -84,7 +93,7 @@ body {
     margin-top: 26px;
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 330px;
 }
 
 .entry-input {
@@ -92,7 +101,6 @@ body {
     height: 40px;
     border: 1px solid hsl(270, 3%, 87%);
     border-radius: 5px;
-    color: hsl(270, 3%, 87%);
     padding-left: 5px;
     font-size: 16px;
 }
@@ -168,8 +176,8 @@ body {
     margin-left:4%
 }
 
-.confirm-btn {
-    width: 100%;
+.btn {
+    width: 330px;
     margin-top: 38px;
     color: hsl(0, 0%, 100%);
     background: hsl(278, 68%, 11%) ;
@@ -213,12 +221,50 @@ body {
 }
 
 .card-name {
-    width: 50%;
+    width: 70%;
     padding-left: 50px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .card-expdate {
-    width: 50%;
+    width: 30%;
     text-align: right;
     padding-right: 50px;
+}
+
+.thankYou {
+    display: none
+}
+
+.font26 {
+    font-size: 26px;
+}
+
+.fontDark {
+    color:hsl(278, 68%, 11%);
+}
+
+.fontMedium {
+    color: hsl(279, 6%, 55%);
+}
+
+.fontClear {
+    color: hsl(270, 3%, 87%);
+}
+
+.font14 {
+    font-size: 14px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.cSpace1 {
+    letter-spacing: 1px;
+}
+
+.mt40 {
+    margin-top: 40px;
 }
