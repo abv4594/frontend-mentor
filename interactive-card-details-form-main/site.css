@@ -4,14 +4,14 @@
 }
 
 /* to avoid Browser to messup with input fields formatting... */
-/* ... solution found Googling */
+/* ... solution found Googling 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
     -webkit-text-fill-color: hsl(270, 3%, 87%);
-}
+} */
 
 .attribution {
     font-size: 11px;
@@ -23,14 +23,13 @@ input:-webkit-autofill:active {
 }
 
 body {
-    background-image: url("./images/bg-main-desktop.png");
-    background-repeat: no-repeat;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 18px;
 }
 
 .container {
-    width: 1440px;
+
+    width: 100vw;
     height: 900px;
     display: flex;
     flex-direction: row;
@@ -39,6 +38,8 @@ body {
 .card-box {
     height: 100%;
     width: 50%;
+    background-image: url("./images/bg-main-desktop.png");
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -193,12 +194,12 @@ body {
 }
 
 .card-front-up {
-    height: 50%;
+    height: 40%;
     padding: 15px 24px;
 }
 
 .card-front-down {
-    height: 50%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -211,7 +212,7 @@ body {
     display: flex;
     flex-direction: row;
     font-size: 13px;
-    margin: auto 0px;
+    align-items: flex-start;
 }
 
 .card-number {
@@ -267,4 +268,105 @@ body {
 
 .mt40 {
     margin-top: 40px;
+}
+
+@media only screen and (max-width: 1143px) and (min-width: 480px) {
+    .card-back {
+        margin: 20px 20px 0px 20px;
+    }
+
+    .card-front {
+        margin: 0px 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .container {
+        flex-direction: column;
+        width: 100vw;
+    }
+
+    .card-box {
+        width: 100%;
+        height: 30vh;
+        margin: 0;
+        position: relative;
+        background-image: url("./images/bg-main-desktop.png");
+        background-position: center;
+        background-size:cover;
+        overflow: visible;
+       
+    }
+
+    .card-back {
+        margin: 0;
+        width: 55%;
+        height: 70%;
+        background-image: url("./images/bg-card-back.png");
+        background-position:top left;
+        background-size: contain;
+        position: absolute;
+        top: 13%;
+        left: 20%;
+        z-index: 0;
+        
+        
+    }
+
+    .card-front {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 55%;
+        height: 70%;
+        background-image: url("./images/bg-card-front.png");
+        background-size: contain;
+        top: 50%;
+        left: 5%;
+        z-index:1;
+        font-size:0.8rem;
+    }
+
+    .cvv-back {
+        top: 45%;
+        left: 76%;
+        font-size: 0.6rem;
+        padding-right: 14%;
+
+    }
+
+    .card-front-up {
+        width: 100%;
+    }
+    
+   .card-number {
+    font-size: 0.9rem;
+    padding-top:5%;
+   }
+
+   .card-name {
+    font-size: 0.60rem;
+    margin: 0;
+    padding-left: 8%;
+    margin-right: 5%;
+    overflow: hidden;
+
+   }
+
+   .card-expdate {
+    font-size: 0.50rem;
+    padding-right:8%;
+    padding-left: 2%;
+   }
+
+   .form-box {
+    width: 100%;
+    margin-top: 10%;
+   }
+
+   .thankYou {
+    margin-top: 40px;
+   }
+
+ 
 }

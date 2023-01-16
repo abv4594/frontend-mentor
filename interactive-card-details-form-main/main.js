@@ -8,9 +8,6 @@
 
 let defaultValues = {}; // store defult values
 const cardNumberSpaces = [4,9,14]; // space effect in card number
-let formUsed = false; // control if inputed text in form
-
-
 
 // initial set up, add event listeners and collect default values (from HTML)
 
@@ -21,6 +18,7 @@ window.addEventListener('DOMContentLoaded', (event)=> {
     for (const entryInput of entryInputs) {
         entryInput.addEventListener('focus', entryFocus);
         entryInput.addEventListener('blur', entryBlur);
+        entryInput.addEventListener('keydown', blockSpecialChars);
         entryInput.addEventListener('input', updateCard);
         defaultValues[entryInput.id + "InCard"] = findInCardEl(entryInput.id, "InCard").textContent;
         defaultValues[entryInput.id] = entryInput.value;
@@ -34,6 +32,7 @@ window.addEventListener('DOMContentLoaded', (event)=> {
 
 })
 
+/* Event Related Functions */
 
 function toggleDisplay(e) {
     e.preventDefault();
@@ -58,21 +57,24 @@ function toggleDisplay(e) {
 
         // make form appear again
         document.getElementsByClassName('inputForm')[0].style.display = "flex";
-        
-        
-
-
     }
 }
 
+function blockSpecialChars(e) {
 
+    if (/[^a-zA-Z0-9 ]/g.test(e.key)) {
+        e.preventDefault();
+        return;
+    }
+}
 
 function updateCard(e) {
-    formUsed = true;
+    
     const inCardEl = findInCardEl(e.target.id, "InCard");
 
     // add spaces effect
-    if (e.target.id === "cardNumber") {
+    //debugger;
+    if (e.target.id === "cardNumber" && e.data !== null) {
         cardNumberSpaces.forEach(spacePos => {
             if (e.target.value.length === spacePos) {
                 e.target.value += " ";
@@ -84,11 +86,13 @@ function updateCard(e) {
 }
 
 function entryFocus(e) {
-    //check if there is currently data in the input field
-    if (e.target.value === defaultValues[e.target.id]) {
+    const eValue = e.target.value;
+    //check if the value is the default and if it's clear it.
+    if (eValue === defaultValues[e.target.id]) {
         e.target.value = "";
         //e.target.style.color = 'hsl(278, 68%, 11%)';
         toggleColors(e.target);
+        return
     } 
 }
 
@@ -103,19 +107,21 @@ function entryBlur(e) {
         inCardEl.textContent = defaultValues[inCardEl.id];
         return // no need to continue
     }
+    
 
     //validate entry:
     if (!window[e.target.id](e.target)) { // will call a function with the same name of id
-        displayError(e.target);
+        displayError(e.target); // display error in the referred field
     } else {
-        cleanError(e.target);
+        cleanError(e.target); 
     }
 }
 
-// validation functions (function name = id of the element)
+/* Validation functions (function name = id of the element) */
 
 function cardHolderName(el) {
     if (!hasLetters(el.value)) return false;
+    if (el.value === defaultValues[el.id]) return false;
     return true
 }
 
@@ -153,12 +159,14 @@ function cardNumber(el) {
     return true;
 }
 
-// functions to control errors display
+/* functions to display/clean errors*/
+
 function cleanError(el) {
     const elErr = findInCardEl(el.id, "Err");
     el.style.border = "1px solid hsl(270, 3%, 87%)"
     elErr.style.color = "white";
 }
+
 function displayError(el) {
     const errEl = findInCardEl(el.id,"Err");
     el.style.border = "1px solid red"
@@ -175,7 +183,6 @@ function findInCardEl (id, suffix) {
     return document.getElementById(id + suffix);
 }
 
-
 function validateInputs() {
     const inputs = document.getElementsByClassName('entry-input');
     let formValid = true;
@@ -188,27 +195,7 @@ function validateInputs() {
     return formValid;
 }
 
-/*function validateInputs() {
-    //get all error messages
-    const errs = document.querySelectorAll("[class^=err]");
-    // if any is red return 
-    for (const el of errs) {
-        if (el.style.color === 'red') return false;
-    }
-
-    // used pressed Confirm without doing nothing
-    if (!formUsed) return false;
-
-    // special case: user presses confirm without doing nothing
-    //const inputs = document.querySelectorAll(".entry-input");
-    //if ([...inputs].every(field => field.value === defaultValues[field.id])) return false;
-
-    return true;
-}*/
-
 function resetPage() {
-
-    formUsed = false 
 
     for (const id in defaultValues) {
         const el = document.getElementById(id);
